@@ -42,7 +42,7 @@ class CategoryRepository extends ServiceEntityRepository
     //    }
 
     /**
-     * Returns an array of ['category' => Category, 'bookCount' => int]
+     * Returns an array of ['categories' => Category, 'bookCount' => int]
      * using a single query with GROUP BY (prevents N+1).
      */
     public function findAllWithBooksCount(): array
