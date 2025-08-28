@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['book:write']],
     paginationItemsPerPage: 5
 )]
-#[ApiFilter(SearchFilter::class, properties: ['author' => 'partial', 'category.name' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['author' => 'partial', 'category.name' => 'partial'])]
 class Book
 {
     #[ORM\Id]
