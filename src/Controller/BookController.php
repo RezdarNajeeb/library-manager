@@ -38,7 +38,7 @@ final class BookController extends AbstractController
             return $this->redirectToRoute('books_show', ['id' => $book->getId()]);
         }
 
-        return $this->render('book/new.html.twig', [
+        return $this->render('books/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -46,6 +46,6 @@ final class BookController extends AbstractController
     #[Route('/books/{id}', name: 'books_show', methods: ['GET'])]
     public function show(Book $book): Response
     {
-        return $this->render('book/show.html.twig', compact('book'));
+        return $this->render('books/show.html.twig', compact('book'));
     }
 }
