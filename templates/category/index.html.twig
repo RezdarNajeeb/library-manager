@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+    {% for row in categories %}
+        <div>
+            <h2>{{ row.entity.name }}</h2>
+            <p>{{ row.booksCount }}</p>
+        </div>
+    {% else %}
+        <p>No categories found.</p>
+    {% endfor %}
+{% endblock %}

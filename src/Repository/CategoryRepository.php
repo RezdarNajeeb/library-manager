@@ -40,4 +40,19 @@ class CategoryRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+     * Returns an array of ['category' => Category, 'bookCount' => int]
+     * using a single query with GROUP BY (prevents N+1).
+     */
+    public function findAllWithBooksCount(): array
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->leftJoin('c.books', 'b')
+            ->addSelect('COUNT(b.id) AS bookCount')
+            ->groupBy('c.id')
+            ->orderBy('c.name', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
 }
