@@ -1,15 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>{{ category.name }}</h1>
-    {% for book in category.books %}
-        <div>
-            <h2>{{ book.title }}</h2>
-            <p>Author: {{ book.author }}</p>
-            <p>Published Year: {{ book.publishedAt ?? 'N/A' }}</p>
-        </div>
-    {% else %}
-        <p>No books found in this category.</p>
-    {% endfor %}
+{% block title %}
+    {{ category.name }}
 {% endblock %}
 
+{% block body %}
+    <div class="mb-6">
+        <a href="{{ path('categories_index') }}" class="text-blue-600 hover:underline">&larr; Back to Categories</a>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ category.name }}</h1>
+        <p class="text-gray-600 mb-6">This category contains {{ category.books|length }} book(s).</p>
+
+        <h2 class="text-2xl font-semibold text-gray-700 border-t pt-4 mt-4">Books in this category</h2>
+        {% if category.books is not empty %}
+            <ul class="list-disc list-inside mt-4 space-y-2">
+                {% for book in category.books %}
+                    <li class="text-gray-700">
+                        <a href="{{ path('books_show', {'id': book.id}) }}" class="text-blue-600 hover:underline">{{ book.title }}</a>
+                        <span class="text-gray-500">by {{ book.author }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="mt-4 text-gray-500">No books found in this category yet.</p>
+        {% endif %}
+    </div>
+{% endblock %}
