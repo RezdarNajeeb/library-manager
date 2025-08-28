@@ -27,7 +27,7 @@ class Book
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Regex(
-        '^(?:ISBN(?:-13)?:?\ )?(?=[0-9]{13}$|(?=(?:[0-9]+[-\ ]){4})[-\ 0-9]{17}$)97[89][-\ ]?[0-9]{1,5}[-\ ]?[0-9]+[-\ ]?[0-9]+[-\ ]?[0-9]$',
+        pattern: '/^(97[89])[\-\ ]?\d{1,5}[\-\ ]?\d{1,7}[\-\ ]?\d{1,7}[\-\ ]?\d$/',
         message: 'This is not a valid ISBN-13 number'
     )]
     private ?string $isbn = null;
