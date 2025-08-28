@@ -1,9 +1,31 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    {{ book.title }}
+{% endblock %}
+
 {% block body %}
-    <h1>{{ book.title }}</h1>
-    <p>Author: {{ book.author }}</p>
-    <p>ISBN: {{ book.isbn }}</p>
-    <p>Published Year: {{ book.publishedAt ? book.publishedAt|date('Y') : 'N/A' }}</p>
-    <p>Category: {{ book.category.name }}</p>
+    <div class="mb-6">
+        <a href="{{ path('books_index') }}" class="text-blue-600 hover:underline">&larr; Back to All Books</a>
+    </div>
+
+    <div class="bg-white p-8 rounded-lg shadow-md">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-2">{{ book.title }}</h1>
+        <p class="text-xl text-gray-600 mb-6">by {{ book.author }}</p>
+
+        <div class="space-y-4 border-t pt-6 mt-6">
+            <div class="flex justify-between">
+                <span class="font-semibold text-gray-700">ISBN:</span>
+                <span class="text-gray-800 font-mono">{{ book.isbn }}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="font-semibold text-gray-700">Published Date:</span>
+                <span class="text-gray-800">{{ book.publishedAt|date('F jS, Y') }}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="font-semibold text-gray-700">Category:</span>
+                <a href="{{ path('categories_show', {'id': book.category.id}) }}" class="bg-gray-200 text-gray-800 text-sm font-medium px-2.5 py-0.5 rounded-full hover:bg-gray-300">{{ book.category.name }}</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
