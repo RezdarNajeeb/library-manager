@@ -6,10 +6,12 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ORM\Table(name: 'categories')]
+#[UniqueEntity('name')]
 class Category
 {
     #[ORM\Id]
@@ -25,7 +27,7 @@ class Category
     /**
      * @var Collection<int, Book>
      */
-    #[ORM\OneToMany(targetEntity: Book::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: Book::class, mappedBy: 'category', orphanRemoval: true)]
     private Collection $books;
 
     public function __construct()
