@@ -13,20 +13,20 @@ final class CategoryController extends AbstractController
     #[Route('/categories', name: 'categories_index', methods: ['GET'])]
     public function index(CategoryRepository $repo): Response
     {
-        $rows = $repo->findAllWithBooksCount();
+        $rows = $repo->findAllWithBookCount();
 
-        // $rows is an array of [0 => Category, 'bookCount' => int], normalize for Twig
+        // $rows is an array of ['category' => Category, 'book_count' => int], normalize for Twig
         $categories = array_map(fn($r) => [
-            'entity' => $r[0],
-            'booksCount' => (int)$r['bookCount'],
+            'entity' => $r['category'],
+            'booksCount' => (int)$r['book_count'],
         ], $rows);
 
-        return $this->render('category/index.html.twig', compact('categories'));
+        return $this->render('categories/index.html.twig', compact('categories'));
     }
 
     #[Route('/categories/{id}', name: 'categories_show', methods: ['GET'])]
     public function show(Category $category): Response
     {
-        return $this->render('category/show.html.twig', compact('category'));
+        return $this->render('categories/show.html.twig', compact('category'));
     }
 }
