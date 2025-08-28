@@ -1,14 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CategoryController!{% endblock %}
+{% block title %}All Categories{% endblock %}
 
 {% block body %}
-    {% for row in categories %}
-        <div>
-            <h2>{{ row.entity.name }}</h2>
-            <p>{{ row.booksCount }}</p>
-        </div>
-    {% else %}
-        <p>No categories found.</p>
-    {% endfor %}
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-700">All Categories</h1>
+    </div>
+
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <ul class="divide-y divide-gray-200">
+            {% for item in categoriesWithCount %}
+                <li class="p-4 hover:bg-gray-50 transition-colors">
+                    <a href="{{ path('categories_show', {'id': item.category.id}) }}" class="flex justify-between items-center">
+                        <span class="text-lg font-medium text-blue-600">{{ item.category.name }}</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-full">
+                            {{ item.bookCount }} {{ item.bookCount == 1 ? 'book' : 'books' }}
+                        </span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="p-4 text-center text-gray-500">No categories found.</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
