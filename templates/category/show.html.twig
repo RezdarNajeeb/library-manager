@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ category.name }}</h1>
+    {% for book in category.books %}
+        <div>
+            <h2>{{ book.title }}</h2>
+            <p>Author: {{ book.author }}</p>
+            <p>Published Year: {{ book.publishedAt ?? 'N/A' }}</p>
+        </div>
+    {% else %}
+        <p>No books found in this category.</p>
+    {% endfor %}
+{% endblock %}
+
