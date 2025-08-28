@@ -10,15 +10,10 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class CategoryController extends AbstractController
 {
-    public function __construct(public CategoryRepository $repo)
-    {
-        //
-    }
-
     #[Route('/categories', name: 'categories_index', methods: ['GET'])]
-    public function index(): Response
+    public function index(CategoryRepository $repo): Response
     {
-        $rows = $this->repo->findAllWithBooksCount();
+        $rows = $repo->findAllWithBooksCount();
 
         // $rows is an array of [0 => Category, 'bookCount' => int], normalize for Twig
         $categories = array_map(fn($r) => [
