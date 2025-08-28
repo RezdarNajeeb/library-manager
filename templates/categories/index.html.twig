@@ -16,7 +16,7 @@
                     <a href="{{ path('categories_show', {'id': item.category.id}) }}" class="flex justify-between items-center">
                         <span class="text-lg font-medium text-blue-600">{{ item.category.name }}</span>
                         <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-full">
-                            {{ item.bookCount }} {{ item.bookCount == 1 ? 'book' : 'books' }}
+                            {{ item.book_count }} {{ item.book_count == 1 ? 'book' : 'books' }}
                         </span>
                     </a>
                 </li>
