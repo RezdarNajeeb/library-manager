@@ -18,27 +18,23 @@ class BookType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Book Title',
                 'attr' => [
                     'placeholder' => 'Enter the book title',
                     'maxlength' => 255
                 ]
             ])
             ->add('author', TextType::class, [
-                'label' => 'Author Name',
                 'attr' => [
                     'placeholder' => 'Enter the author\'s name',
                 ]
             ])
             ->add('isbn', TextType::class, [
-                'label' => 'ISBN',
                 'attr' => [
                     'placeholder' => '978-0-123-45678-9',
                     'pattern' => '[0-9\-]+',
                 ]
             ])
             ->add('publishedAt', DateType::class, [
-                'label' => 'Publication Date',
                 'widget' => 'single_text',
                 'attr' => [
                     'max' => (new \DateTime())->format('Y-m-d')
