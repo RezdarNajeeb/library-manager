@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     normalizationContext: ['groups' => ['category:read']],
     denormalizationContext: ['groups' => ['category:write']],
-    paginationItemsPerPage: 10
+    paginationItemsPerPage: 5
 )]
 class Category
 {
