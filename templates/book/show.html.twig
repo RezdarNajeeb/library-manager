@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ book.title }}</h1>
+    <p>Author: {{ book.author }}</p>
+    <p>ISBN: {{ book.isbn }}</p>
+    <p>Published Year: {{ book.publishedAt ?? 'N/A' }}</p>
+    <p>Category: {{ book.category.name }}</p>
+{% endblock %}
