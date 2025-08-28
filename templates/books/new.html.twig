@@ -1,6 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    {{ form(form) }}
+{% block title %}
+    Add a New Book
 {% endblock %}
 
+{% block body %}
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-gray-700 mb-6">Add a New Book</h1>
+
+        {{ form_start(form) }}
+
+        {# Title Field #}
+        <div class="mb-4">
+            {{ form_label(form.title, 'Title', {'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'}}) }}
+            {{ form_widget(form.title, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500'}}) }}
+            <div class="text-red-500 text-sm mt-1 h-4">{{ form_errors(form.title) }}</div>
+        </div>
+
+        {# Author Field #}
+        <div class="mb-4">
+            {{ form_label(form.author, 'Author', {'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'}}) }}
+            {{ form_widget(form.author, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500'}}) }}
+            <div class="text-red-500 text-sm mt-1 h-4">{{ form_errors(form.author) }}</div>
+        </div>
+
+        {# ISBN Field #}
+        <div class="mb-4">
+            {{ form_label(form.isbn, 'ISBN', {'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'}}) }}
+            {{ form_widget(form.isbn, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500'}}) }}
+            <div class="text-red-500 text-sm mt-1 h-4">{{ form_errors(form.isbn) }}</div>
+        </div>
+
+        {# Published At Field #}
+        <div class="mb-4">
+            {{ form_label(form.publishedAt, 'Published At', {'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'}}) }}
+            {{ form_widget(form.publishedAt, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500'}}) }}
+            <div class="text-red-500 text-sm mt-1 h-4">{{ form_errors(form.publishedAt) }}</div>
+        </div>
+
+        {# Category Field #}
+        <div class="mb-4">
+            {{ form_label(form.category, 'Category', {'label_attr': {'class': 'block text-gray-700 text-sm font-bold mb-2'}}) }}
+            {{ form_widget(form.category, {'attr': {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500'}}) }}
+            <div class="text-red-500 text-sm mt-1 h-4">{{ form_errors(form.category) }}</div>
+        </div>
+
+        {# Submit Button #}
+        <div class="mb-4">
+            {{ form_widget(form.save, {
+                'attr': {
+                    'class': 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full'
+                }
+              })
+            }}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
