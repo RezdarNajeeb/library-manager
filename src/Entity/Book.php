@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -25,17 +26,18 @@ class Book
     #[Assert\Length(min: 3)]
     private ?string $author = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 20)]
     #[Assert\NotBlank]
     #[Assert\Regex(
-        pattern: '/^(97[89])[\-\ ]?\d{1,5}[\-\ ]?\d{1,7}[\-\ ]?\d{1,7}[\-\ ]?\d$/',
+        pattern: '/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/',
         message: 'This is not a valid ISBN-13 number'
     )]
     private ?string $isbn = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotNull]
     #[Assert\LessThanOrEqual('today')]
-    private ?\DateTime $publishedAt = null;
+    private ?\DateTimeInterface $publishedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'books')]
     #[ORM\JoinColumn(nullable: false)]
